@@ -1,0 +1,43 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Helper functions
+    function isSignedIn() {
+      return request.auth != null;
+    }
+    
+    function isAdmin() {
+      return isSignedIn() && request.auth.token.email == 'officialvishwateja@gmail.com';
+    }
+    
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+    
+    // Applications - users can read their own, admin can read/write all
+    match /applications/{applicationId} {
+      allow read: if isSignedIn() && (isOwner(resource.data.userId) || isAdmin());
+      allow create: if isSignedIn() && request.resource.data.userId == request.auth.uid;
+      allow update: if isAdmin() || (isSignedIn() && isOwner(resource.data.userId) && !request.resource.data.diff(resource.data).affectedKeys().hasAny(['status', 'progress', 'amount']));
+      allow delete: if isAdmin();
+    }
+    
+    // Users - users can read/write their own data
+    match /users/{userId} {
+      allow read: if isSignedIn() && (isOwner(userId) || isAdmin());
+      allow write: if isSignedIn() && (isOwner(userId) || isAdmin());
+    }
+    
+    // Visa Pricing - anyone can read, only admin can write
+    match /visaPricing/{countryId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+    
+    // Admin logs - only admin can read/write
+    match /adminLogs/{logId} {
+      allow read, write: if isAdmin();
+    }
+  }
+}
