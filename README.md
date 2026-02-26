@@ -1,6 +1,7 @@
 # V-Visas 🌍✈️
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![React](https://img.shields.io/badge/React-19.2.0-blue.svg)](https://reactjs.org/)
 [![Vite](https://img.shields.io/badge/Vite-8.0.0-646CFF.svg)](https://vitejs.dev/)
 [![Firebase](https://img.shields.io/badge/Firebase-12.9.0-orange.svg)](https://firebase.google.com/)
@@ -81,7 +82,12 @@ UAE, Thailand, United States, Canada, Australia, United Kingdom, Germany, Switze
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is dual-licensed under your choice of:
+
+- **MIT License** - see the [LICENSE-MIT](LICENSE-MIT) file for details
+- **Apache License 2.0** - see the [LICENSE-APACHE](LICENSE-APACHE) file for details
+
+You may use this project under the terms of either license.
 
 ## 👨‍💻 Author
 
